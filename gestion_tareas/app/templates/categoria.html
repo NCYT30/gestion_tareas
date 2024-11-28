@@ -1,0 +1,73 @@
+{% extends 'base.html' %}
+{% block content %}
+{% load static %}
+
+<link rel="stylesheet" href="{% static 'css/categoria.css' %}">
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<main class="content">
+  <h2>Gestión de Categorías</h2>
+
+  <!-- Botón para abrir el modal -->
+  <div class="add-category">
+    <button id="addCategoryBtn" class="btn">Añadir Nueva Categoría</button>
+  </div>
+
+  <!-- Modal para añadir categoría -->
+  <div id="addCategoryModal" class="modal" style="display: none;">
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <h3>Añadir Nueva Categoría</h3>
+      <form method="POST" action="{% url 'categoria' %}">
+        {% csrf_token %}
+        <div class="form-group">
+          <label for="name">Nombre de la Categoría:</label>
+          <input type="text" id="name" name="name" placeholder="Nombre" required>
+        </div>
+        <div class="form-group">
+          <label for="description">Descripción:</label>
+          <textarea id="description" name="description" placeholder="Descripción (opcional)"></textarea>
+        </div>
+        <button type="submit" class="btn">Guardar Categoría</button>
+      </form>
+    </div>
+  </div>
+
+  <div id="editCategoryModal" class="modal" style="display: none;">
+    <div class="modal-content">
+      <span class="close" onclick="closeModal('editCategoryModal')">&times;</span>
+      <h3>Editar Categoría</h3>
+      <form id="editCategoryForm">
+        <div class="form-group">
+          <label for="editName">Nombre de la Categoría:</label>
+          <input type="text" id="editName" name="name" placeholder="Nombre" required>
+        </div>
+        <div class="form-group">
+          <label for="editDescription">Descripción:</label>
+          <textarea id="editDescription" name="description" placeholder="Descripción (opcional)"></textarea>
+        </div>
+        <button type="submit" class="btn">Guardar Cambios</button>
+      </form>
+    </div>
+  </div>
+  
+
+  <!-- Lista de Categorías -->
+  <div class="category-list">
+    {% for categoria in categorias %}
+      <div class="category-item">
+        <span class="category-name">{{ categoria.name }}</span>
+        <p class="category-description">{{ categoria.description|default:"Sin descripción" }}</p>
+        <div class="category-actions">
+          <button class="btn-edit"><i class="fas fa-edit"></i> Editar</button>
+          <button class="btn-delete"><i class="fas fa-trash"></i> Eliminar</button>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+</main>
+
+<script src="{% static 'js/categoria.js' %}"></script>
+
+
+{% endblock %}

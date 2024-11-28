@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestión de Tareas</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/crear.css' %}">
+</head>
+<body>
+    <div class="container">
+        <!-- Formulario -->
+        <div class="form-container">
+            <h2>Crear/Editar Tarea</h2>
+            <form action="{% url 'crear_una_tarea' %}"  method="POST" id="task-form">
+                {% csrf_token %}
+
+                <!-- Título -->
+                <label for="titulo">Título:</label>
+                <input type="text" id="titulo" name="title" placeholder="Ingresa el título de la tarea" required>
+
+                <!-- Descripción -->
+                <label for="descripcion">Descripción:</label>
+                <textarea id="descripcion" name="description" placeholder="Agrega una descripción" required></textarea>
+
+                <!-- Fecha límite -->
+                <label for="fecha_limite">Fecha límite:</label>
+                <input type="date" id="fecha_limite" name="due_date" required>
+
+                <!-- Categoría -->
+                <label for="categoria">Categoría:</label>
+                <select id="categoria" name="category" required>
+                    <option value="">Selecciona una categoría</option>
+                    {% for cat in categor %}
+                        <option value="{{ cat.id }}">{{ cat.name }}</option>
+                    {% endfor %}
+                </select>
+
+                <!-- Estado -->
+                <label for="estado">Estado:</label>
+                <select id="estado" name="status" required>
+                    <option value="PENDING">Pendiente</option>
+                    <option value="IN_PROGRESS">En progreso</option>
+                    <option value="COMPLETED">Completada</option>
+                </select>
+
+                <!-- Prioridad -->
+                <label>Prioridad:</label>
+                <div>
+                    <input type="radio" id="prioridad-baja" name="priority" value="1" required>
+                    <label for="prioridad-baja">Baja</label>
+                    <input type="radio" id="prioridad-media" name="priority" value="2" required>
+                    <label for="prioridad-media">Media</label>
+                    <input type="radio" id="prioridad-alta" name="priority" value="3" checked required>
+                    <label for="prioridad-alta">Alta</label>
+                </div>
+
+                <!-- Asignar a Usuario -->
+                <label for="usuario">Asignar a Usuario:</label>
+                <select id="usuario" name="user" required>
+                    <option value="">Selecciona un usuario</option>
+                    {% for user in usuario %}
+                        <option value="{{ user.id }}">{{ user.username }}</option>
+                    {% endfor %}
+                </select>
+
+                <!-- Botones -->
+                <div class="form-actions">
+                    <button type="submit" id="save-task" class="save">Guardar</button>
+                    <button type="button" id="cancel-task" class="cancel-btn" onclick="window.history.back()">Cancelar</button>
+                </div>
+            </form>
+        </div>
+
+        <!-- Vista Previa -->
+        <div class="preview-container">
+            <h2>Vista Previa</h2>
+            <p><strong>Título:</strong> <span id="preview-titulo">Sin título</span></p>
+            <p><strong>Descripción:</strong> <span id="preview-descripcion">Sin descripción</span></p>
+            <p><strong>Fecha Límite:</strong> <span id="preview-fecha">Sin fecha límite</span></p>
+            <p><strong>Categoría:</strong> <span id="preview-categoria">Sin categoría</span></p>
+            <p><strong>Estado:</strong> <span id="preview-estado">Pendiente</span></p>
+            <p><strong>Prioridad:</strong> <span id="preview-prioridad">Alta</span></p>
+            <p><strong>Usuario:</strong> <span id="preview-usuario">Sin usuario asignado</span></p>
+        </div>
+    </div>
+
+    <script src="{% static 'js/crear.js' %}"></script>
+</body>
+</html>

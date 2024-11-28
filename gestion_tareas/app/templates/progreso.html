@@ -1,0 +1,68 @@
+{% extends 'base.html' %}
+{% block content %}
+
+
+
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/tareas.css' %}">
+
+    <!-- Contenido Principal -->
+    <main class="content">
+      <h2>Tareas en Progreso</h2>
+      
+      <!-- Listado de tareas -->
+      {% if tareas_en_progreso %}
+        <ul class="task-list">
+          {% for tarea in tareas_en_progreso %}
+            <li class="task-item">
+              <h3>{{ tarea.title }}</h3>
+              <p>{{ tarea.description|default:"Sin descripción" }}</p>
+              <p><strong>Fecha límite:</strong> {{ tarea.due_date|date:"d-m-Y" }}</p>
+              <p><strong>Prioridad:</strong> 
+                {% if tarea.priority == 3 %}Alta
+                {% elif tarea.priority == 2 %}Media
+                {% else %}Baja
+                {% endif %}
+              </p>
+              <div class="task-actions">
+                <button class="btn-editar" data-id="{{ tarea.id }}">Editar</button>
+                <button class="btn-eliminar" data-id="{{ tarea.id }}">Eliminar</button>
+              </div>
+            </li>
+          {% endfor %}
+        </ul>
+      {% else %}
+        <p>No hay tareas en progreso.</p>
+      {% endif %}
+    </main>
+
+    <div id="editModal" class="modal">
+      <div class="modal-content">
+        <span class="close">&times;</span>
+        <h3>Editar Tarea</h3>
+        <form id="editForm">
+          <input type="hidden" id="task-id">
+          <label for="title">Título:</label>
+          <input type="text" id="title" required>
+          <label for="description">Descripción:</label>
+          <textarea id="description"></textarea>
+          <label for="due_date">Fecha Límite:</label>
+          <input type="date" id="due_date">
+          <label for="priority">Prioridad:</label>
+          <select id="priority">
+            <option value="1">Baja</option>
+            <option value="2">Media</option>
+            <option value="3">Alta</option>
+          </select>
+          <button type="submit">Guardar Cambios</button>
+        </form>
+      </div>
+    </div>
+    
+
+
+  <!-- JavaScript -->
+  <script src="{% static 'js/tareas.js' %}"></script>
+
+  
+{% endblock %}

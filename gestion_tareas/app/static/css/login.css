@@ -1,0 +1,108 @@
+/* General */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(to left, #818181, #f8f9fa, #818181); 
+    color: #343a40;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+  
+  /* Contenedor del Login */
+  .login-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  /* Caja de Login */
+  .login-box {
+    background-color: white;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    width: 350px;
+    text-align: center;
+  }
+  
+  /* Título */
+  .login-box h2 {
+    font-size: 1.8rem;
+    margin-bottom: 1.5rem;
+    color: #007bff;
+  }
+  
+  /* Grupo de Entrada */
+  .input-group {
+    margin-bottom: 1.5rem;
+    text-align: left;
+  }
+  
+  .input-group label {
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+    color: #495057;
+  }
+  
+  .input-group input {
+    width: 100%;
+    padding: 0.8rem;
+    font-size: 1rem;
+    border: 1px solid #ced4da;
+    border-radius: 5px;
+    box-sizing: border-box;
+  }
+  
+  .input-group input:focus {
+    border-color: #007bff;
+    outline: none;
+  }
+  
+  /* Botón de Iniciar Sesión */
+  .btn-login {
+    width: 100%;
+    padding: 1rem;
+    background-color: #007bff;
+    color: white;
+    font-size: 1.2rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s;
+  }
+  
+  .btn-login:hover {
+    background-color: #0056b3;
+  }
+  
+  /* Enlace para Contraseña Olvidada */
+  .forgot-password {
+    display: block;
+    margin-top: 1rem;
+    color: #007bff;
+    text-decoration: none;
+  }
+  
+  .forgot-password:hover {
+    text-decoration: underline;
+  }
+  
+  /* Enlace de Registro */
+  .register-link {
+    margin-top: 1.5rem;
+    font-size: 1rem;
+  }
+  
+  .register-link a {
+    color: #007bff;
+    text-decoration: none;
+  }
+  
+  .register-link a:hover {
+    text-decoration: underline;
+  }
+  

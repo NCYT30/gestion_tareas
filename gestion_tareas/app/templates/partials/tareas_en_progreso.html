@@ -1,0 +1,12 @@
+{% for tarea in tareas %}
+<div class="task" data-id="{{ tarea.id }}">
+  <p><strong>{{ tarea.title }}</strong></p>
+  <p>{{ tarea.description|default:"Sin descripción" }}</p>
+  <p><small>Fecha límite: {{ tarea.due_date|date:"d-m-Y" }}</small></p>
+  <button class="btn-completar" data-id="{{ tarea.id }}">Marcar como Completada</button>
+  <button class="btn-editar" data-id="{{ tarea.id }}">Editar</button>
+  <button class="btn-eliminar" data-id="{{ tarea.id }}">Eliminar</button>
+</div>
+{% empty %}
+<p>No hay tareas en progreso.</p>
+{% endfor %}

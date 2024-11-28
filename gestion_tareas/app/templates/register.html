@@ -1,0 +1,56 @@
+<!-- register.html -->
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registrarse - Gestión de Tareas</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/register.css' %}"> <!-- Archivo CSS externo --> 
+</head>
+<body>
+    <div class="register-container">
+        <div class="register-box">
+            <h2>Registrarse</h2>
+
+            <!-- Formulario de Registro -->
+            <form action="{% url 'user_register' %}" method="POST">
+                {% csrf_token %}
+                
+                <!-- Campo de Nombre de Usuario -->
+                <div class="input-group">
+                    <label for="username">Nombre de Usuario</label>
+                    <input type="text" name="username" id="username" required>
+                </div>
+                
+                <!-- Campo de Contraseña -->
+                <div class="input-group">
+                    <label for="password1">Contraseña</label>
+                    <input type="password" name="password1" id="password1" required>
+                </div>
+                
+                <!-- Campo de Confirmar Contraseña -->
+                <div class="input-group">
+                    <label for="password2">Confirmar Contraseña</label>
+                    <input type="password" name="password2" id="password2" required>
+                </div>
+
+                <!-- Si hay un error, mostramos el mensaje -->
+                {% if error_message %}
+                    <div class="error-message">
+                        <p>{{ error_message }}</p>
+                    </div>
+                {% endif %}
+                
+                <div class="form-footer">
+                    <button type="submit" class="btn-register">Registrar</button>
+                </div>
+            </form>
+
+            <div class="login-link">
+                <p>¿Ya tienes cuenta? <a href="{% url 'login_user' %}">Inicia sesión</a></p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

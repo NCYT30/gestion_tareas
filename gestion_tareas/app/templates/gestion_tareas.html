@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<main class="content">
+  <!-- Sección de Resumen -->
+  <section class="summary">
+    <div class="card">
+      <h3>Tareas Pendientes</h3>
+      <p>{{ tareas_pendientes }}</p>
+    </div>
+    <div class="card">
+      <h3>Tareas Completadas</h3>
+      <p>{{ tareas_completadas }}</p>
+    </div>
+    <div class="card">
+      <h3>Alta Prioridad</h3>
+      <p>{{ alta_prioridad }}</p>
+    </div>
+  </section>
+
+  <!-- Calendario o Lista de Tareas -->
+  <section class="task-overview">
+    <h2>Tareas Próximas</h2>
+    <ul class="task-list">
+      {% for tarea in tareas_proximas %}
+        <li>
+          <span class="task-title">{{ tarea.title }}</span>
+          <span class="task-date">{{ tarea.due_date|date:"d/m/Y" }}</span>
+          <span class="task-priority">
+            {% if tarea.priority == 3 %}
+              ⭐ Alta
+            {% elif tarea.priority == 2 %}
+              ⚪ Media
+            {% else %}
+              🔵 Baja
+            {% endif %}
+          </span>
+        </li>
+      {% empty %}
+        <li>No hay tareas pendientes próximamente.</li>
+      {% endfor %}
+    </ul>
+  </section>
+</main>
+
+{% endblock %}

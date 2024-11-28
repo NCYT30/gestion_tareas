@@ -1,0 +1,256 @@
+/* General */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f8f9fa;
+    color: #343a40;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    background-color: #343a40;
+    color: #fff;
+  }
+  
+  .header h1 {
+    margin: 0;
+    font-size: 1.5rem;
+  }
+  
+  
+  /* Contenedor Principal */
+  .main-container {
+    display: flex;
+    height: calc(100vh - 80px); /* Restando el header */
+  }
+  
+  /* Sidebar */
+  .sidebar {
+    width: 260px;
+    background-color: #495057;
+    color: white;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .sidebar .logo h2 {
+    text-align: center;
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+    color: #ffc107;
+  }
+  
+  .sidebar ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .sidebar ul li {
+    margin-bottom: 1rem;
+  }
+  
+  .sidebar ul li a {
+    text-decoration: none;
+    color: white;
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+    padding: 0.7rem;
+    border-radius: 5px;
+    transition: background 0.3s ease;
+  }
+  
+  .sidebar ul li a:hover {
+    background-color: #6c757d;
+  }
+  
+  .sidebar ul li a i {
+    margin-right: 0.5rem;
+    font-size: 1.2rem;
+  }
+  
+  
+  /* Contenido Principal */
+  .content {
+    flex: 1;
+    padding: 2rem;
+    background-color: white;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    margin-left: 20px;
+  }
+  
+  /* Filtros */
+  .filters {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  .filters select, .filters input {
+    padding: 0.7rem;
+    font-size: 1rem;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+  }
+  
+  /* Tablero Kanban */
+  .kanban-board {
+    display: flex;
+    gap: 2rem;
+    justify-content: space-between;
+  }
+  
+  .kanban-column {
+    width: 30%;
+    background-color: #e9ecef;
+    padding: 1rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .kanban-column h3 {
+    text-align: center;
+  }
+  
+  .task {
+    background-color: white;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    border-radius: 5px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  }
+  
+  button {
+    margin-right: 0.5rem;
+    padding: 0.5rem 1rem;
+    background-color: #ffc107;
+    border: none;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  button:hover {
+    background-color: #e0a800;
+  }
+  
+  .footer {
+    text-align: center;
+    padding: 1rem;
+    background-color: #343a40;
+    color: white;
+  }
+
+  /* Modal container */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.4);
+  overflow: auto;
+  padding-top: 100px;
+}
+
+/* Modal content */
+.modal-content {
+  background-color: #fff;
+  margin: auto;
+  padding: 30px; /* Aumentado el padding para más espacio interior */
+  border: 1px solid #888;
+  border-radius: 10px;
+  width: 50%; /* Aumentado el ancho del modal */
+  max-width: 600px; /* Aumentado el tamaño máximo */
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+/* Close button */
+.close {
+  color: #aaa;
+  font-size: 28px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: color 0.3s;
+}
+
+.close:hover,
+.close:focus {
+  color: #000;
+  text-decoration: none;
+}
+
+/* Form labels and inputs */
+form div {
+  margin-bottom: 20px; /* Espacio más grande entre los elementos */
+}
+
+label {
+  font-weight: bold;
+  display: block;
+  margin-bottom: 8px;
+}
+
+input[type="text"],
+textarea {
+  width: 100%;
+  padding: 12px; /* Más padding para inputs */
+  margin: 5px 0;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+  transition: border-color 0.3s;
+}
+
+input[type="text"]:focus,
+textarea:focus {
+  border-color: #0056b3;
+  outline: none;
+}
+
+/* Submit button */
+button[type="submit"] {
+  background-color: #4CAF50;
+  color: white;
+  padding: 15px 20px; /* Aumentado el padding para el botón */
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  width: 100%;
+  transition: background-color 0.3s;
+}
+
+button[type="submit"]:hover {
+  background-color: #45a049;
+}
+
+/* Animations for task items */
+.task-item {
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.task-item.removed {
+  opacity: 0;
+  transform: translateY(-10px);
+}
+
+/* Responsive Design */
+@media (max-width: 600px) {
+  .modal-content {
+    width: 80%; /* Ajustado para pantallas más pequeñas */
+  }
+  
+  button[type="submit"] {
+    font-size: 14px;
+  }
+}

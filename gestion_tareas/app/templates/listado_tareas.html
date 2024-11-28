@@ -1,0 +1,116 @@
+{% extends 'base.html' %}
+{% block content %}
+
+  {% load static %}
+  <link rel="stylesheet" href="{% static 'css/tareas.css' %}">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sortablejs@1.15.0/Sortable.min.js"></script>
+
+
+    <!-- Contenido Principal -->
+    <main class="content">
+      <meta name="csrf-token" content="{{ csrf_token }}">
+      <input type="hidden" name="csrfmiddlewaretoken" value="{{ csrf_token }}">
+
+      <h2>Listado de Tareas</h2>
+
+        <!-- Filtros -->
+        <div class="filters">
+          <select name="category" id="filter-categoria">
+            <option value="">Filtrar por Categoría</option>  
+            {% for cate in categor %}
+            <option value="{{ cate.id }}">{{ cate.name }}</option>
+            {% endfor %}
+          </select>
+  
+          <select id="filter-estado">
+            <option value="">Filtrar por Estado</option>
+            <option value="PENDING">Pendiente</option>
+            <option value="IN_PROGRESS">En Progreso</option>
+            <option value="COMPLETED">Completada</option>
+          </select>
+  
+          <input type="date" id="filter-fecha" placeholder="Filtrar por Fecha Límite">
+        </div>
+
+      <!-- Tablero Kanban -->
+      <div class="kanban-board">
+        <!-- Columnas Kanban -->
+        <div class="kanban-column" id="pending-column">
+          <h3>Pendientes</h3>
+          {% for tarea in tareas_pendientes %}
+          <div class="task" data-id="{{ tarea.id }}">
+            <p><strong>{{ tarea.title }}</strong></p>
+            <p>{{ tarea.description|default:"Sin descripción" }}</p>
+            <p><small>Fecha límite: {{ tarea.due_date|date:"d-m-Y" }}</small></p>
+            <button class="btn-completar" data-id="{{ tarea.id }}">Marcar como Completada</button>
+            <button class="btn-editar" data-id="{{ tarea.id }}">Editar</button>
+            <button class="btn-eliminar" data-id="{{ tarea.id }}">Eliminar</button>
+          </div>
+          {% empty %}
+          <p>No hay tareas pendientes.</p>
+          {% endfor %}
+        </div>
+
+        <div class="kanban-column" id="in-progress-column">
+          <h3>En Progreso</h3>
+          {% for tarea in tareas_en_progreso %}
+          <div class="task" data-id="{{ tarea.id }}">
+            <p><strong>{{ tarea.title }}</strong></p>
+            <p>{{ tarea.description|default:"Sin descripción" }}</p>
+            <p><small>Fecha límite: {{ tarea.due_date|date:"d-m-Y" }}</small></p>
+            <button class="btn-completar" data-id="{{ tarea.id }}">Marcar como Completada</button>
+            <button class="btn-editar" data-id="{{ tarea.id }}">Editar</button>
+            <button class="btn-eliminar" data-id="{{ tarea.id }}">Eliminar</button>
+          </div>
+          {% empty %}
+          <p>No hay tareas en progreso.</p>
+          {% endfor %}
+        </div>
+
+        <div class="kanban-column" id="completed-column">
+          <h3>Completadas</h3>
+          {% for tarea in tareas_completadas %}
+          <div class="task" data-id="{{ tarea.id }}">
+            <p><strong>{{ tarea.title }}</strong></p>
+            <p>{{ tarea.description|default:"Sin descripción" }}</p>
+            <p><small>Fecha límite: {{ tarea.due_date|date:"d-m-Y" }}</small></p>
+            <button class="btn-editar" data-id="{{ tarea.id }}">Editar</button>
+            <button class="btn-eliminar" data-id="{{ tarea.id }}">Eliminar</button>
+          </div>
+          {% empty %}
+          <p>No hay tareas completadas.</p>
+          {% endfor %}
+        </div>
+      </div>
+    </main>
+
+    <div id="editTaskModal" class="modal">
+      <div class="modal-content">
+        <span class="close">&times;</span>
+        <h2>Editar Tarea</h2>
+        <form id="editTaskForm">
+          <input type="hidden" id="task-id">
+          <div>
+            <label for="task-title">Título:</label>
+            <input type="text" id="task-title" required>
+          </div>
+          <div>
+            <label for="task-description">Descripción:</label>
+            <textarea id="task-description"></textarea>
+          </div>
+          <div>
+            <label for="task-due-date">Fecha Límite:</label>
+            <input type="date" id="task-due-date">
+          </div>
+          <button type="submit">Guardar Cambios</button>
+        </form>
+      </div>
+    </div>
+    
+    
+
+  <script src="{% static 'js/tareas.js' %}"></script>
+
+  {% endblock %}

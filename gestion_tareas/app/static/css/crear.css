@@ -1,0 +1,160 @@
+/* Reseteo de márgenes y padding */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Body */
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f9;
+  color: #333;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;  /* Alineación de los elementos al principio de la página */
+  min-height: 100vh;
+  padding: 20px;
+  flex-direction: column;
+}
+
+/* Contenedor principal */
+.container {
+  display: flex;
+  justify-content: space-between;  /* Deja espacio entre formulario y vista previa */
+  gap: 20px;  /* Espacio entre el formulario y la vista previa */
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  background-color: white;
+  padding: 30px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Título del formulario */
+h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  font-size: 1.8rem;
+  color: #333;
+}
+
+/* Formulario */
+.form-container {
+  flex: 1;  /* El formulario ocupará el espacio restante */
+  margin-right: 20px;  /* Espacio entre el formulario y la vista previa */
+}
+
+.form-container label {
+  display: block;
+  margin-bottom: 8px;
+  font-size: 1rem;
+  color: #555;
+}
+
+.form-container input, .form-container select, .form-container textarea {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 1rem;
+}
+
+.form-container textarea {
+  height: 120px;
+  resize: vertical;
+}
+
+.form-container input[type="date"] {
+  font-size: 1rem;
+}
+
+.form-container .form-actions {
+  text-align: center;
+}
+
+.form-container button {
+  padding: 10px 20px;
+  font-size: 1rem;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.form-container button#save-task {
+  background-color: #4CAF50;
+  color: white;
+}
+
+.form-container button#save-task:hover {
+  background-color: #45a049;
+}
+
+.form-container button#cancel-task {
+  background-color: #f44336;
+  color: white;
+  margin-left: 10px;
+}
+
+.form-container button#cancel-task:hover {
+  background-color: #e53935;
+}
+
+/* Vista previa */
+.preview-container {
+  flex: 1;  /* La vista previa ocupará el espacio restante */
+  background-color: #f9f9f9;
+  padding: 20px;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+}
+
+.preview-container h2 {
+  text-align: center;
+  font-size: 1.8rem;
+  margin-bottom: 20px;
+}
+
+.preview-container p {
+  font-size: 1rem;
+  margin-bottom: 10px;
+  color: #555;
+}
+
+.preview-container p strong {
+  color: #333;
+}
+
+.preview-container span {
+  font-weight: normal;
+  color: #777;
+}
+
+/* Diseño responsive para pantallas pequeñas */
+@media (max-width: 768px) {
+  .container {
+      flex-direction: column;  /* En pantallas pequeñas, el formulario y la vista previa se apilan */
+  }
+
+  .form-container {
+      margin-right: 0;  /* Elimina el margen derecho en pantallas pequeñas */
+  }
+
+  .form-container input,
+  .form-container select,
+  .form-container textarea {
+      font-size: 0.9rem;
+  }
+
+  .form-container button {
+      font-size: 0.9rem;
+      padding: 8px 16px;
+  }
+
+  .preview-container {
+      margin-top: 20px;  /* Da un margen superior a la vista previa */
+  }
+}

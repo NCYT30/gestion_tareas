@@ -1,0 +1,228 @@
+/* General */
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f8f9fa;
+  color: #343a40;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  background-color: #343a40;
+  color: #fff;
+}
+
+.header h1 {
+  margin: 0;
+  font-size: 1.5rem;
+}
+
+/* Contenedor Principal */
+.main-container {
+  display: flex;
+  height: calc(100vh - 80px); /* Restando el header */
+}
+  
+  /* Sidebar */
+  .sidebar {
+    width: 260px;
+    background-color: #495057;
+    color: white;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .sidebar .logo h2 {
+    text-align: center;
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+    color: #ffc107;
+  }
+  
+  .sidebar ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .sidebar ul li {
+    margin-bottom: 1rem;
+  }
+  
+  .sidebar ul li a {
+    text-decoration: none;
+    color: white;
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+    padding: 0.7rem;
+    border-radius: 5px;
+    transition: background 0.3s ease;
+  }
+  
+  .sidebar ul li a:hover {
+    background-color: #6c757d;
+  }
+  
+  .sidebar ul li a i {
+    margin-right: 0.5rem;
+    font-size: 1.2rem;
+  }
+  
+/* Contenido Principal */
+.content {
+  flex: 1;
+  padding: 2rem;
+  background-color: white;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  margin-left: 20px;
+}
+
+/* Título de la Página */
+.content h2 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+/* Botón de Añadir Categoría */
+.add-category {
+  margin-bottom: 2rem;
+}
+
+.add-category .btn {
+  background-color: #007bff;
+  color: white;
+  padding: 0.8rem 1.2rem;
+  border: none;
+  border-radius: 5px;
+  font-size: 1.1rem;
+  cursor: pointer;
+}
+
+.add-category .btn:hover {
+  background-color: #0056b3;
+}
+
+/* Lista de Categorías */
+.category-list {
+  margin-top: 1rem;
+}
+
+.category-item {
+  background-color: #e9ecef;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  border-radius: 8px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.category-name {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #343a40;
+}
+
+.category-actions button {
+  margin-left: 0.5rem;
+  padding: 0.5rem 1rem;
+  background-color: #ffc107;
+  border: none;
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 0.9rem;
+}
+
+.category-actions button:hover {
+  background-color: #e0a800;
+}
+
+.category-actions .btn-edit {
+  background-color: #17a2b8;
+}
+
+.category-actions .btn-edit:hover {
+  background-color: #138496;
+}
+
+.category-actions .btn-delete {
+  background-color: #dc3545;
+}
+
+.category-actions .btn-delete:hover {
+  background-color: #c82333;
+}
+
+/* Footer */
+.footer {
+  text-align: center;
+  padding: 1rem;
+  background-color: #343a40;
+  color: white;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+}
+
+.modal {
+  display: none; /* Oculto por defecto */
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex; /* Flexbox para centrar */
+  justify-content: center; /* Centra horizontalmente */
+  align-items: center; /* Centra verticalmente */
+  z-index: 1000; /* Asegura que el modal esté encima de otros elementos */
+}
+
+.modal-content {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  width: 400px;
+  max-width: 90%; /* Asegura que no se desborde en pantallas pequeñas */
+  box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.2);
+  position: relative;
+  text-align: center;
+}
+
+.modal-content .close {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+.modal-content .form-group {
+  margin-bottom: 15px;
+}
+
+.modal-content .form-group input,
+.modal-content .form-group textarea {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.modal-content button {
+  background-color: #007bff;
+  color: white;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
